@@ -5,7 +5,7 @@ import sqlite3 #Database that will be used
 from flask import Flask, request, render_template, redirect
 #import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 db_name = 'UserCred.db'
 
 @app.route("/")
