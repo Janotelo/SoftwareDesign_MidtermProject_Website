@@ -1,8 +1,18 @@
 <html>
 <head>
+<title>Login Page</title>
+<style>
+/*#MainloginArea {
+    margin: auto;
+    height: 400px;
+    width: 500px
+}
 
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
-<title>Homepage</title>
+#mainbreak {
+    height = 300px;
+    width = 100px;
+}*/
+</style>
 </head>
 <body>
     <div id = "mainbreak"></div>
@@ -13,19 +23,9 @@
         </br>
         <input aria-label="First name" class="form-control" placeholder = "Password", name = "Password", type = "Password">
     </br>
-        
-
-    <input id = "submit" type = "Submit" class = "btn btn-dark" value="Login"></input>
+        <input type = "Submit" class="btn btn-dark"></input>
     </form>
-    <a>Don't have account?</a>
-    <a id = "register" href = "/register">Register</a>
-</br></br></br>
+        <a href = "/register">Register</a>
     </div>
-</div>
-</br>
-
-<a>©2021 Aqua Cuidado. All rights reserved | Design by </a>
-<a id = "color" >4j's</a>
-
 </body>
 </html>
