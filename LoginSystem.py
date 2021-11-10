@@ -1,9 +1,9 @@
-import pyotp
+#import pyotp
 import sqlite3 #Database that will be used
-import hashlib
-import uuid
+#import hashlib
+#import uuid
 from flask import Flask, request, render_template, redirect
-import os
+#import os
 
 app = Flask(__name__)
 db_name = 'UserCred.db'
@@ -27,10 +27,14 @@ def verify_cred(username, password):
 def user_login():
     reqUserLog = request.form['Username']
     reqPassLog = request.form['Password']
+    conn = sqlite3.connect(db_name)
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS USER_CRED(USERNAME TEXT PRIMARY KEY NOT NULL, PASSWORD TEXT NOT NULL);''')
+    conn.commit()
     error = None
     if request.method == 'POST':
         if verify_cred(reqUserLog, reqPassLog):
-            error = 'login success'
+            return render_template('LoggendIn.html')
         else:
             error = 'Invalid username/password'
     else:
@@ -55,4 +59,4 @@ def user_register():
     return render_template("Register.html")
 
 if __name__== "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5050, debug=True)
