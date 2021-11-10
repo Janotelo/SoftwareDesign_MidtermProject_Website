@@ -24,7 +24,7 @@ def verify_cred(username, password):
     return records[0] == password
 
 @app.route("/", methods = ["GET","POST"])
-def checkloginv2():
+def user_login():
     reqUserLog = request.form['Username']
     reqPassLog = request.form['Password']
     error = None
@@ -38,7 +38,7 @@ def checkloginv2():
     return error
 
 @app.route("/register", methods = ["GET", "POST"])
-def registerpage():
+def user_register():
     if request.method == "POST":
         reqUser = request.form['Username']
         reqPass = request.form['Password']
