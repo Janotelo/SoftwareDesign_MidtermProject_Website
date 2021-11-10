@@ -34,7 +34,7 @@ def user_login():
     error = None
     if request.method == 'POST':
         if verify_cred(reqUserLog, reqPassLog):
-            return render_template('LoggendIn.html')
+            return render_template("LoggendIn.html")
         else:
             error = 'Invalid username/password'
     else:
@@ -53,6 +53,7 @@ def user_register():
         try:
             c.execute("INSERT INTO USER_CRED (USERNAME,PASSWORD)" "VALUES('{0}', '{1}')".format(reqUser,reqPass))
             conn.commit()
+            return redirect("/")
         except sqlite3.IntegrityError:
             return "Username has been registered."
         print('username: ', reqUser, 'password: ', reqPass)
