@@ -13,7 +13,7 @@ def homepage():
     return render_template("homepage.html")
 
 def verify_cred(username, password):
-    conn = sqlite3.connect('test.db')
+    conn = sqlite3.connect(db_name)
     c = conn.cursor()
     query = "SELECT PASSWORD FROM USER_CRED WHERE USERNAME = '{0}'".format(username)
     c.execute(query)
