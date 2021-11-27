@@ -1,19 +1,46 @@
 <html>
 <head>
-</head>
-<body>
-<div id = "mainbreak"></div>
-<div id = "MainloginArea">
-    <h2> Welcome user Register</h2>
-    <h3> What is Lorem Ipsum?
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been class=""</h3>
-<form method = "POST">
-    <input class="form-control" placeholder="Desired Username" name = "Username">
-</br>
-    <input class="form-control" placeholder="Desired Password" name = "Password", type = "Password">
-</br>
-    <input type = "Submit" class="btn btn-dark">
-</form>
-</div>
-</body>
-</html>
+    
+    <title>Register</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styleRegister.css') }}">
+    </head>
+    <body>
+        <link href='https://fonts.googleapis.com/css?family=Lexend Deca' rel='stylesheet'>
+        <div class = "bg-image"></div>
+        <div class = "content">
+        
+        <div class = "registration"></div>
+        <h2>Welcome User, Seems Like you have not registered to the system </h2>
+        <h3>Spend a moment and register yourself</h3>
+
+        <form method = "POST">
+        </br></br></br>    
+        <a>Username</a></br>
+            <input id = "round" class = "form-control" placeholder = "Desired Username" name = "Username" required>
+        </br></br>
+
+        <a>First Name</a></br>
+            <input id = "round" class = "form-control" placeholder = "Desired Firstname" name = "Firstname" required>
+        </br></br>
+
+        <a>Last Name</a></br>
+            <input id = "round" class = "form-control" placeholder = "Desired Lastname" name = "Lastname" required>
+        </br></br>
+
+        
+        <a>Password</a></br>
+            <input id = "round" class = "form-control" placeholder = "Desired Password" name = "Password", type = "Password" required></br>
+        
+        </br>
+      
+            <a href = "/"><input id = "submit" type = "Submit" class = "btn btn-dark" value = "Sign up"></a>
+            <a href = "/"><input id = "submit" type = "button" class = "btn btn-dark" value = "Go back"></a>
+        </form>
+        </div>
+
+    </div>
+    
+    <a>©2021 Aqua Cuidado. All rights reserved | Design by </a>
+    <a id = "color" >4j's</a>
+    </body>
+    </html>

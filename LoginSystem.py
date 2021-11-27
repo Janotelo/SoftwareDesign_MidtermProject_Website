@@ -1,63 +1,57 @@
-#import pyotp
 import sqlite3 #Database that will be used
-#import hashlib
-#import uuid
 from flask import Flask, request, render_template, redirect
-#import os
+import requests
 
 app = Flask(__name__, static_url_path='')
-db_name = 'UserCred.db'
 
 @app.route("/")
 def homepage():
     return render_template("homepage.html")
 
-def verify_cred(username, password):
-    conn = sqlite3.connect(db_name)
-    c = conn.cursor()
-    query = "SELECT PASSWORD FROM USER_CRED WHERE USERNAME = '{0}'".format(username)
-    c.execute(query)
-    records = c.fetchone()
-    conn.close()
-    if not records:
-        return False
-    return records[0] == password
-
 @app.route("/", methods = ["GET","POST"])
 def user_login():
     reqUserLog = request.form['Username']
     reqPassLog = request.form['Password']
-    conn = sqlite3.connect(db_name)
-    c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS USER_CRED(USERNAME TEXT PRIMARY KEY NOT NULL, PASSWORD TEXT NOT NULL);''')
-    conn.commit()
-    error = None
-    if request.method == 'POST':
-        if verify_cred(reqUserLog, reqPassLog):
-            return render_template("LoggendIn.html")
-        else:
-            error = 'Invalid username/password'
+    json_data = requests.get("http://127.0.0.5:5000/users/"+reqUserLog).json()
+    if json_data['user_USERNAME'] == reqUserLog and json_data['user_PASS'] == reqPassLog:
+        return redirect("/LoggendIn")
     else:
-        error = 'Invalid Method'
-    return error
+        return f"Invalid Username and Password."
 
 @app.route("/register", methods = ["GET", "POST"])
 def user_register():
     if request.method == "POST":
-        reqUser = request.form['Username']
-        reqPass = request.form['Password']
-        conn = sqlite3.connect(db_name)
-        c = conn.cursor()
-        c.execute('''CREATE TABLE IF NOT EXISTS USER_CRED(USERNAME TEXT PRIMARY KEY NOT NULL, PASSWORD TEXT NOT NULL);''')
-        conn.commit()
-        try:
-            c.execute("INSERT INTO USER_CRED (USERNAME,PASSWORD)" "VALUES('{0}', '{1}')".format(reqUser,reqPass))
-            conn.commit()
-            return redirect("/")
-        except sqlite3.IntegrityError:
-            return "Username has been registered."
-        print('username: ', reqUser, 'password: ', reqPass)
+        regUSERNAME = request.form['Username']
+        regFNAME = request.form['Firstname']
+        regLNAME = request.form['Lastname']
+        regPass = request.form['Password']
+
+        json_data = requests.get("http://127.0.0.5:5000/users/"+regUSERNAME).json()
+        print(len(json_data))
+        if len(json_data) > 0:
+            return f"User already exists"
+        else:
+            user_CRED = {
+                'user_USERNAME':regUSERNAME,
+                'user_FNAME':regFNAME,
+                'user_LNAME':regLNAME,
+                'user_PASS':regPass
+                }
+            requests.post('http://127.0.0.5:5000/users', json = user_CRED)
     return render_template("Register.html")
 
+@app.route('/Monitoring', methods = ['GET', 'POST'])
+def monitoring():
+    return render_template('Monitoring.html')
+
+@app.route('/LoggendIn', methods = ['GET', 'POST'])
+def introduction():
+    return render_template('LoggendIn.html')
+
+@app.route('/About', methods = ['GET', 'POST'])
+def about():
+    return render_template('About.html')
+
+
 if __name__== "__main__":
-    app.run(host='0.0.0.0', port=5050, debug=True)
+    app.run(host='127.0.0.3', port=8080, debug=True)
