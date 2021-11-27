@@ -34,7 +34,7 @@ def user_login():
     error = None
     if request.method == 'POST':
         if verify_cred(reqUserLog, reqPassLog):
-            return render_template("LoggendIn.html")
+            return render_template('LoggendIn.html')
         else:
             error = 'Invalid username/password'
     else:
@@ -59,5 +59,18 @@ def user_register():
         print('username: ', reqUser, 'password: ', reqPass)
     return render_template("Register.html")
 
+@app.route('/Monitoring.html', methods = ['GET', 'POST'])
+def monitoring():
+    return render_template('Monitoring.html')
+
+@app.route('/LoggendIn.html', methods = ['GET', 'POST'])
+def introduction():
+    return render_template('LoggendIn.html')
+
+@app.route('/About.html', methods = ['GET', 'POST'])
+def about():
+    return render_template('About.html')
+
+
 if __name__== "__main__":
-    app.run(host='0.0.0.0', port=5050, debug=True)
+    app.run(host='127.0.0.1', port=5050, debug=True)
