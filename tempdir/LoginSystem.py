@@ -12,7 +12,8 @@ def homepage():
 def user_login():
     reqUserLog = request.form['Username']
     reqPassLog = request.form['Password']
-    json_data = requests.get("http://127.0.0.10:5000/users/"+reqUserLog, verify=False).json()
+    json_data = requests.get("http://10.0.2.15:5000/users/" + reqUserLog).json()
+    print(json_data)
     if json_data['user_USERNAME'] == reqUserLog and json_data['user_PASS'] == reqPassLog:
         return redirect("/LoggendIn")
     else:
@@ -26,7 +27,7 @@ def user_register():
         regLNAME = request.form['Lastname']
         regPass = request.form['Password']
 
-        json_data = requests.get("http://127.0.0.10:5000/users/"+regUSERNAME, verify=False).json()
+        json_data = requests.get("http://10.0.2.15:5000/users/"+regUSERNAME, verify=False).json()
         print(len(json_data))
         if len(json_data) > 0:
             return f"User already exists"
@@ -37,7 +38,7 @@ def user_register():
                 'user_LNAME':regLNAME,
                 'user_PASS':regPass
                 }
-            requests.post('http://127.0.0.10:5000/users', json = user_CRED, verify=False)
+            requests.post('http://10.0.2.15:5000/users', json = user_CRED, verify=False)
             return redirect("/")
 
     return render_template("Register.html")

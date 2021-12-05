@@ -1,48 +1,54 @@
 <html>
+
 <head>
 
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
-<title>Homepage</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+    <title>Homepage</title>
 </head>
+
 <body>
-<link href='https://fonts.googleapis.com/css?family=Lexend Deca' rel='stylesheet'>
-<div class = "bg-image" ></div>
-<div class = "content">
-    <div class = "Home">
-    <h3 class = "display-1">Aqua Cuidado</h3>
-    <img src="https://cdn-icons-png.flaticon.com/512/1998/1998759.png" >
+    <link href='https://fonts.googleapis.com/css?family=Lexend Deca' rel='stylesheet'>
+    <div class="bg-image"></div>
+    <div class="content">
+        <div class="Home">
+            <h3 class="display-1">Aqua Cuidado</h3>
+            <img src="https://cdn-icons-png.flaticon.com/512/1998/1998759.png">
+        </div>
+
+        <div class="Box">
+            <form method="POST">
+                </br>
+                </br>
+                </br>
+                <a>UserName</a>
+                </br>
+                <input id="round" type="text" aria-label="First name" class="form-control" placeholder="UserName" ,
+                    name="Username" required>
+                </br>
+                </br>
+                <a>Password</a>
+                </br>
+                <input id="round" aria-label="Last name" class="form-control" placeholder="Password" , name="Password" ,
+                    type="Password" required>
+                </br>
+                </br>
+
+
+                <a href="LoggendIn.html">
+                    <input id="submit" type="Submit" class="btn btn-dark" value="Login"></input></a>
+            </form>
+            <a>Don't have account?</a>
+            <a id="register" href="/register">Register</a>
+            </br>
+            </br>
+            </br>
+        </div>
     </div>
+    </br>
 
-    <div class = "Box">
-    <form method = "POST">
-    </br>
-    </br>
-    </br>    
-        <a>UserName</a>
-    </br>
-        <input id = "round" type ="text" aria-label="First name" class = "form-control" placeholder= "UserName", name = "Username" required>
-    </br>  
-    </br>
-        <a>Password</a>
-    </br>
-        <input id = "round" aria-label="Last name" class="form-control" placeholder = "Password", name = "Password", type = "Password" required>
-    </br>
-    </br>
-        
-
-    <a href = "LoggendIn.html"><input id = "submit" type = "Submit" class = "btn btn-dark" value="Login"></input></a> 
-    </form>
-    <a>Don't have account?</a>
-    <a id = "register" href = "/register">Register</a>
-    </br>
-    </br>
-    </br>
-    </div>
-</div>
-</br>
-
-<a>:copyright:2021 Aqua Cuidado. All rights reserved | Design by </a>
-<a id = "color" >4j's</a>
+    <a>:copyright:2021 Aqua Cuidado. All rights reserved | Design by </a>
+    <a id="color">4j's</a>
 
 </body>
+
 </html>
