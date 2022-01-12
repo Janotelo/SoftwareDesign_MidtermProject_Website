@@ -1,35 +1,36 @@
 <html>
-   <head>
-      <title>Aqua Cuidado</title>
-      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/base.css') }}">
-   </head>
-   <body>
-      <link href='https://fonts.googleapis.com/css?family=Lexend Deca' rel='stylesheet'>
-      <div class="topnav">
-         <div class="topnav-right">
-            <a class ="active" href="/">Login</a>
-            <a href="register.html">Register</a>
-         </div>
+
+<head>
+   <title>Aqua Cuidado</title>
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/base.css') }}">
+</head>
+
+<body>
+   <link href='https://fonts.googleapis.com/css?family=Lexend Deca' rel='stylesheet'>
+   <div class="topnav">
+      <div class="topnav-right">
+         <a class="active" href="/">Login</a>
+         <a href="/register">Register</a>
       </div>
-      <form>
-         </br></br></br>
-         <img id = "imgSize" src = "https://cdn-icons-png.flaticon.com/512/1772/1772614.png">
-         </br>
-         <div class = "login">
-      <form method = "POST">
-      <h1>Log In</h1>
-      <label>Email</label>
-      <input type = "text" placeholder="Enter Email" name = "email" required>
-      <label>Password</label>
+   </div>
+      </br></br></br>
+      <img id="imgSize" src="https://cdn-icons-png.flaticon.com/512/1772/1772614.png">
       </br>
-      <input type = "password" placeholder="Enter Password" name = "password" required>
-      </br></br>
-      <a href = "/"><input class = "submit" type = "Submit" class = "btn btn-dark" value = "Login"></a>
-      </br>
-      <hr class ="line">
-      </hr>
-      <a href = "/register.html"><input class = "button" type = "button" class = "btn btn-dark" value = "Sign Up"></a>
-      </form>
+      <div class="login">
+         <form method="POST">
+            <h1>Log In</h1>
+            <a>Email</a>
+            <input type="text" placeholder="Enter Email" name="email" required>
+            <a>Password</a>
+            </br>
+            <input type="password" placeholder="Enter Password" name="password" required>
+            </br>
+            </br>
+            <input class="submit" type="Submit" class="btn btn-dark" value="Login"></input>
+            </br>
+            <hr class="line">
+            </hr>
+         </form>
+         <a href="/register"><input class="button" type="button" class="btn btn-dark" value="Sign Up"></a>
       </div>
-      </form>
-   </body>
+</body>
