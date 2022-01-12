@@ -1,54 +1,35 @@
 <html>
-
-<head>
-
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
-    <title>Homepage</title>
-</head>
-
-<body>
-    <link href='https://fonts.googleapis.com/css?family=Lexend Deca' rel='stylesheet'>
-    <div class="bg-image"></div>
-    <div class="content">
-        <div class="Home">
-            <h3 class="display-1">Aqua Cuidado</h3>
-            <img src="https://cdn-icons-png.flaticon.com/512/1998/1998759.png">
-        </div>
-
-        <div class="Box">
-            <form method="POST">
-                </br>
-                </br>
-                </br>
-                <a>UserName</a>
-                </br>
-                <input id="round" type="text" aria-label="First name" class="form-control" placeholder="UserName" ,
-                    name="Username" required>
-                </br>
-                </br>
-                <a>Password</a>
-                </br>
-                <input id="round" aria-label="Last name" class="form-control" placeholder="Password" , name="Password" ,
-                    type="Password" required>
-                </br>
-                </br>
-
-
-                <a href="LoggendIn.html">
-                    <input id="submit" type="Submit" class="btn btn-dark" value="Login"></input></a>
-            </form>
-            <a>Don't have account?</a>
-            <a id="register" href="/register">Register</a>
-            </br>
-            </br>
-            </br>
-        </div>
-    </div>
-    </br>
-
-    <a>:copyright:2021 Aqua Cuidado. All rights reserved | Design by </a>
-    <a id="color">4j's</a>
-
-</body>
-
-</html>
+   <head>
+      <title>Aqua Cuidado</title>
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/base.css') }}">
+   </head>
+   <body>
+      <link href='https://fonts.googleapis.com/css?family=Lexend Deca' rel='stylesheet'>
+      <div class="topnav">
+         <a class="active" href="/homepage.html">Home</a>
+         <a href="/team.html">Team</a>
+         <a href="/monitoring.html">Monitoring</a>
+         <div class="topnav-right">
+            <div class="dropdown">
+               <button class="dropbtn">Account
+               <i class="fa fa-caret-down"></i>
+               </button>
+               <div class="dropdown-content">
+                  <a href="/">Logout</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      </br></br></br></br>
+      <div class = "dashboard">
+         <h2 style="text-align:center">What is Aquaquidado?</h2>
+         <img id = "introPic" src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t1.15752-9/263724092_242536644569693_7536828926365935859_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=ae9488&_nc_eui2=AeHAY0cwHOBon-IL-0ZsNxpWubXH5oY3Z3q5tcfmhjdneiqjcfjpgZ9cRmstlEjt6LzSx-Ieg3LIvbVVMqIfXMco&_nc_ohc=uw6hr-r3QocAX_2RpBf&tn=9ioUiDXreWC1ddTi&_nc_ht=scontent.fmnl17-2.fna&oh=03_AVLCkLrVPNYTcXJGXd5slaB9BroL4prr0nNt7qyO5QxVUA&oe=61DFF06E" ></a>
+         <p id = "size">The project is a control system that sustain oxygen, salinity, and temperature 
+            level that minimize the mortality rate of the post larvae vannamei shrimp. 
+            The electricity  source of the control system are solar panel, and a plug-in for versatility. 
+            The project will be monitored by hardware and application. 
+            The monitoring system can display the oxygen, salinity, 
+            and temperature level of the control system.
+         </p>
+      </div>
+   </body>
