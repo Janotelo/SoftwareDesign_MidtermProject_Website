@@ -1,0 +1,45 @@
+<html>
+   <head>
+      <title>Aqua Cuidado</title>
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/base.css') }}">
+   </head>
+   <body>
+      <link href='https://fonts.googleapis.com/css?family=Lexend Deca' rel='stylesheet'>
+      <div class="topnav">
+         <a href="/homepage.html">Home</a>
+         <a href="/team.html">Team</a>
+         <a class="active"  href="/monitoring.html">Monitoring</a>
+         <div class="topnav-right">
+            <div class="dropdown">
+               <button class="dropbtn">Account
+               <i class="fa fa-caret-down"></i>
+               </button>
+               <div class="dropdown-content">
+                  <a href="/">Logout</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      </br></br></br></br>
+      <div class = "dashboard">
+         <h1>This is the monitoring for the Shrimp </h1>
+         </br></br></br>
+         <table id = "tableMonitor">
+            <tr>
+               <td><img id="MonitorPic" src="https://cdn-icons-png.flaticon.com/512/2622/2622386.png" ></td>
+               <td>
+                  <h2>Temperature:</h2>
+               </td>
+               <td>Values</td>
+            </tr>
+            <tr>
+               <td><img id="MonitorPic" src="https://cdn-icons-png.flaticon.com/512/2156/2156550.png" ></td>
+               <td>
+                  <h2>Salinity:</h2>
+               </td>
+               <td>Values</td>
+         </table>
+         </tr>
+         </tr>
+      </div>
+   </body>
