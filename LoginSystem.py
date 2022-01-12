@@ -1,59 +1,58 @@
-import sqlite3 #Database that will be used
-from flask import Flask, request, render_template, redirect
+from flask import Flask, g, request, render_template, redirect, session, url_for
 import requests
+from json import loads as deserialize
 
 app = Flask(__name__, static_url_path='')
+app.secret_key = "thisisasecretkey"
+url = "http://127.0.0.1:5001"
 
 @app.route("/")
-def homepage():
-    return render_template("homepage.html")
+def LoginPage():
+    if "token" in session:
+        token = session["token"]
+        return redirect("/dashboard")
+    else:
+        return render_template("loginPage.html")
 
 @app.route("/", methods = ["GET","POST"])
 def user_login():
-    reqUserLog = request.form['Username']
-    reqPassLog = request.form['Password']
-    json_data = requests.get("http://10.0.2.15:5000/users/" + reqUserLog).json()
-    print(json_data)
-    if json_data['user_USERNAME'] == reqUserLog and json_data['user_PASS'] == reqPassLog:
-        return redirect("/LoggendIn")
-    else:
-        return f"Invalid Username and Password."
+    if request.method =="POST":
+        reqEmailLog = request.form['email']
+        reqPassLog = request.form['password']
+        user_CRED = {
+                'email':reqEmailLog,
+                'password':reqPassLog,
+                }
+        json_data = requests.post(url + '/api/login', json = user_CRED, verify=False)
+        print(json_data.content)
+        des_cont = deserialize(json_data.content)
+        session["token"]= (des_cont["token"])
+        return redirect("/dashboard")
 
 @app.route("/register", methods = ["GET", "POST"])
 def user_register():
     if request.method == "POST":
-        regUSERNAME = request.form['Username']
-        regFNAME = request.form['Firstname']
-        regLNAME = request.form['Lastname']
-        regPass = request.form['Password']
+        regEmail = request.form['email']
+        regPass = request.form['password']
+        user_CRED = {
+            'email':regEmail,
+            'password':regPass
+            }
+        requests.post(url + '/api/register', json = user_CRED, verify=False)
+        return redirect("/")
+    return render_template("register.html")
 
-        json_data = requests.get("http://10.0.2.15:5000/users/"+regUSERNAME, verify=False).json()
-        print(len(json_data))
-        if len(json_data) > 0:
-            return f"User already exists"
-        else:
-            user_CRED = {
-                'user_USERNAME':regUSERNAME,
-                'user_FNAME':regFNAME,
-                'user_LNAME':regLNAME,
-                'user_PASS':regPass
-                }
-            requests.post('http://10.0.2.15:5000/users', json = user_CRED, verify=False)
-            return redirect("/")
-
-    return render_template("Register.html")
-
-@app.route('/Monitoring', methods = ['GET', 'POST'])
-def monitoring():
-    return render_template('Monitoring.html')
-
-@app.route('/LoggendIn', methods = ['GET', 'POST'])
-def introduction():
-    return render_template('LoggendIn.html')
-
-@app.route('/About', methods = ['GET', 'POST'])
-def about():
-    return render_template('About.html')
+@app.route("/dashboard", methods = ["GET", "POST"])
+def dashboard():
+    if "token" in session:
+        return render_template("dashboard.html")
+    else:
+        return redirect("/")
+    
+@app.route("/logout")
+def logout():
+    session.pop("token", None)
+    return redirect("/")
 
 if __name__== "__main__":
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
