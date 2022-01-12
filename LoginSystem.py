@@ -12,7 +12,7 @@ def LoginPage():
         token = session["token"]
         return redirect("/dashboard")
     else:
-        return render_template("loginPage.html")
+        return render_template("login.html")
 
 @app.route("/", methods = ["GET","POST"])
 def user_login():
@@ -27,7 +27,7 @@ def user_login():
         print(json_data.content)
         des_cont = deserialize(json_data.content)
         session["token"]= (des_cont["token"])
-        return redirect("/dashboard")
+        return redirect("/homepage")
 
 @app.route("/register", methods = ["GET", "POST"])
 def user_register():
@@ -42,10 +42,24 @@ def user_register():
         return redirect("/")
     return render_template("register.html")
 
-@app.route("/dashboard", methods = ["GET", "POST"])
+@app.route("/homepage", methods = ["GET", "POST"])
 def dashboard():
     if "token" in session:
-        return render_template("dashboard.html")
+        return render_template("homepage.html")
+    else:
+        return redirect("/")
+        
+@app.route("/monitoring", methods = ["GET", "POST"])
+def dashboard():
+    if "token" in session:
+        return render_template("monitoring.html")
+    else:
+        return redirect("/")
+
+@app.route("/team", methods = ["GET", "POST"])
+def dashboard():
+    if "token" in session:
+        return render_template("team.html")
     else:
         return redirect("/")
     
