@@ -14,10 +14,10 @@ echo "RUN pip install requests" >> tempdir/Dockerfile
 echo "COPY  ./templates /home/myapp/templates/" >> tempdir/Dockerfile
 echo "COPY  ./static /home/myapp/static/" >> tempdir/Dockerfile
 echo "COPY  LoginSystem.py /home/myapp/" >> tempdir/Dockerfile
-echo "EXPOSE 5001" >> tempdir/Dockerfile
+echo "EXPOSE 5000" >> tempdir/Dockerfile
 echo "CMD python3 /home/myapp/LoginSystem.py" >> tempdir/Dockerfile
 
 cd tempdir
 docker build -t midtermapp .
-docker run -t -d -p 5001:5001 --name midtermrunning midtermapp
+docker run -t -d -p 5000:5000 --name midtermrunning midtermapp
 docker ps -a
